@@ -1,6 +1,6 @@
 {
   "name": "typst",
-  "version": "0.10.0-4",
+  "version": "0.10.0-5",
   "description": "A new markup-based typesetting system that is powerful and easy to learn.",
   "keywords": [
     "typesetting",
@@ -12,9 +12,9 @@
     "markdown",
     "pdf"
   ],
-  "homepage": "https://typst.app/",
-  "bugs": "https://github.com/jcbhmr/typst.js/issues",
-  "repository": "github:jcbhmr/typst.js",
+  "homepage": "https://typst.app",
+  "bugs": "https://github.com/typst-community/typst.js/issues",
+  "repository": "github:typst-community/typst.js",
   "license": "Apache-2.0",
   "contributors": [
     "Jacob Hummer <jcbhmr@outlook.com> (https://jcbhmr.me/)"
