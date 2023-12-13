@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "postinstall": "node dist/postinstall.js || true",
-    "test": "vitest",
+    "test": "tsc && node --test",
     "build": "tsc",
     "format": "prettier -w .",
     "lint": "tsc --noEmit"

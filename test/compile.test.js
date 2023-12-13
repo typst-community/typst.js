@@ -1,5 +1,6 @@
-import { test } from "vitest";
-import * as typst from "../src/index.ts"
+import test from "node:test"
+import assert from "node:assert/strict";
+import * as typst from "../dist/index.js"
 
 test("compile example.typ", async () => {
   await typst.compile(
