@@ -1,9 +1,9 @@
 import { test } from "vitest";
-import compile from "../src/compile.js";
+import * as typst from "../src/index.ts"
 
 test("compile example.typ", async () => {
-  await compile(
-    import.meta.resolve("./example.typ"),
-    import.meta.resolve("./example.pdf"),
+  await typst.compile(
+    new URL("./example.typ", import.meta.url),
+    new URL("./example.pdf", import.meta.url),
   );
 });
