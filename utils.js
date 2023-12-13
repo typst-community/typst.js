@@ -5,6 +5,8 @@ import { Writable } from "node:stream";
 import { createWriteStream } from "node:fs";
 import { $ } from "execa";
 
+const ext = process.platform === "win32" ? ".exe" : "";
+
 /**
  *
  * @param {import('node:fs').PathLike} destRaw
@@ -95,8 +97,8 @@ export async function typstMetaInstall(
   await rm(new URL(archive, destFileURL), { force: true });
   await mkdir(new URL("./bin/", destFileURL), { recursive: true });
   await rename(
-    new URL(`./${folder}/typst`, destFileURL),
-    new URL("./bin/typst", destFileURL)
+    new URL(`./${folder}/typst${ext}`, destFileURL),
+    new URL(`./bin/typst${ext}`, destFileURL)
   );
   await rm(new URL(`./${folder}`, destFileURL), {
     recursive: true,
