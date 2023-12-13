@@ -1,35 +1,44 @@
 {
-    "name": "typst",
-    "version": "0.10.0-3",
-    "description": "A new markup-based typesetting system that is powerful and easy to learn.",
-    "keywords": [
-        "typesetting",
-        "markup",
-        "typesetter",
-        "typeset",
-        "typst",
-        "latex",
-        "markdown",
-        "pdf"
-    ],
-    "homepage": "https://typst.app/",
-    "bugs": "https://github.com/jcbhmr/typst.js/issues",
-    "repository": "github:jcbhmr/typst.js",
-    "license": "Apache-2.0",
-    "contributors": ["Jacob Hummer <jcbhmr@outlook.com> (https://jcbhmr.me/)"],
-    "type": "module",
-    "exports": null,
-    "bin": "main.js",
-    "files": [
-        "main.js",
-        "postinstall.js",
-        "utils.js"
-    ],
-    "scripts": {
-        "postinstall": "node postinstall.js || true",
-        "test": "node main.js --help"
-    },
-    "dependencies": {
-        "execa": "^8.0.1"
-    }
+  "name": "typst",
+  "version": "0.10.0-4",
+  "description": "A new markup-based typesetting system that is powerful and easy to learn.",
+  "keywords": [
+    "typesetting",
+    "markup",
+    "typesetter",
+    "typeset",
+    "typst",
+    "latex",
+    "markdown",
+    "pdf"
+  ],
+  "homepage": "https://typst.app/",
+  "bugs": "https://github.com/jcbhmr/typst.js/issues",
+  "repository": "github:jcbhmr/typst.js",
+  "license": "Apache-2.0",
+  "contributors": [
+    "Jacob Hummer <jcbhmr@outlook.com> (https://jcbhmr.me/)"
+  ],
+  "type": "module",
+  "exports": "./dist/index.js",
+  "bin": "dist/main.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "postinstall": "node dist/postinstall.js || true",
+    "test": "vitest",
+    "build": "tsc",
+    "format": "prettier -w .",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "execa": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.4"
+  }
 }

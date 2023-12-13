@@ -3,6 +3,9 @@ typst-*.tar.xz
 typst-*.zip
 bin/typst
 
+# Ignore Typst PDF outputs
+test/*.pdf
+
 #region https://github.com/github/gitignore/blob/main/Node.gitignore
 # Logs
 logs
