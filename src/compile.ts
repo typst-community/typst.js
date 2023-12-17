@@ -1,15 +1,9 @@
 import { PathLike } from "node:fs";
 import { toPath, typstPath } from "./utils.js";
 import { $ } from "execa";
+import { query } from './query';
 
-export interface TypstQueryOptions {
-  root?: PathLike;
-  fontPath?: PathLike;
-  diagnosticFormat?: 'human' | 'short' | 'json' | 'yaml';
-  field?: string;
-  one?: boolean;
-  format?: 'json' | 'yaml';
-}
+
 
 export interface TypstCompileOptions {
   root?: PathLike;
