@@ -10,7 +10,9 @@ export interface TypstCompileOptions {
   open?: boolean;
   ppi?: number;
   flamegraph?: PathLike;
+  cert?: PathLike;
 }
+
 export default async function compile(
   inputRaw: PathLike,
   outputRaw: PathLike | undefined = undefined,
@@ -26,6 +28,7 @@ export default async function compile(
   if (options.open != null) opts.push("--open");
   if (options.ppi != null) opts.push("--ppi", options.ppi.toString());
   if (options.flamegraph != null) opts.push("--flamegraph", options.flamegraph ? toPath(options.flamegraph) : undefined);
+  if (options.cert != null) opts.push("--cert", toPath(options.cert));
   if (outputPath === undefined) {
     await $`${typstPath} compile ${opts} ${inputPath}`;
   } else {
