@@ -169,6 +169,7 @@ TYPST_FONT_PATHS=path/to/fonts typst fonts
 ```
 
 For other CLI subcommands and options, see below:
+      --cert <CERT>   Path to a custom CA certificate to use when making network requests [env: TYPST_CERT=]
 
 ```sh
 # Prints available subcommands and options.
