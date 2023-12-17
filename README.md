@@ -159,7 +159,7 @@ of the fonts it discovered:
 
 ```sh
 # Adds additional directories to search for fonts.
-typst query input_file.typ '.selector'
+typst compile --font-path path/to/fonts file.typ
 
 # Lists all of the discovered fonts in the system and the given directory.
 typst fonts --font-path path/to/fonts
@@ -168,38 +168,6 @@ typst fonts --font-path path/to/fonts
 TYPST_FONT_PATHS=path/to/fonts typst fonts
 ```
 
-The `typst.query()` function allows you to process an input file to extract specified metadata using selectors. Here's how you can use it with different options:
-
-```sh
-# Extracts metadata from the input file using the provided selector.
-typst query input_file.typ '.selector'
-
-# Configures the project root.
-typst query --root path/to/project input_file.typ '.selector'
-
-# Adds directories to search for fonts.
-typst query --font-path path/to/fonts input_file.typ '.selector'
-
-# Sets the format to emit diagnostics in. Defaults to 'human'.
-typst query --diagnostic-format json input_file.typ '.selector'
-
-# Extracts one particular field from the retrieved elements.
-typst query --field 'field_name' input_file.typ '.selector'
-
-# Expects and retrieves exactly one element.
-typst query --one input_file.typ '.selector'
-
-# Specifies the format for serialized output. Defaults to 'json'.
-typst query --format yaml input_file.typ '.selector'
-```
-
-Here's what each option does:
-- `--root`: Sets the project root for resolving absolute paths. Default is the current working directory.
-- `--font-path`: Adds extra directories for font searching. There's no default value; it's optional.
-- `--diagnostic-format`: Determines the format for displaying diagnostics. Default is `human`. Possible values are `human`, `short`, `json`, `yaml`.
-- `--field`: Targets a specific field within the selected metadata for extraction.
-- `--one`: Indicates that exactly one matching element is expected for retrieval.
-- `--format`: Defines the serialization format of the output. Default is `json`. The other possible value is `yaml`.
 For other CLI subcommands and options, see below:
 
 ```sh
