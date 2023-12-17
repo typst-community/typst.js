@@ -9,7 +9,7 @@ export interface TypstCompileOptions {
   format?: 'pdf' | 'png' | 'svg';
   open?: boolean;
   ppi?: number;
-  flamegraph?: PathLike | undefined;
+  flamegraph?: PathLike;
 }
 export default async function compile(
   inputRaw: PathLike,
@@ -17,7 +17,7 @@ export default async function compile(
   options: TypstCompileOptions = {},
 ) {
   const inputPath = toPath(inputRaw);
-  const outputPath = outputRaw === undefined ? undefined : toPath(outputRaw);
+  const outputPath = outputRaw == null ? undefined : toPath(outputRaw);
   const opts = [];
   if (options.root != null) opts.push("--root", toPath(options.root));
   if (options.fontPath != null) opts.push("--font-path", toPath(options.fontPath));
@@ -27,8 +27,8 @@ export default async function compile(
   if (options.ppi != null) opts.push("--ppi", options.ppi.toString());
   if (options.flamegraph != null) opts.push("--flamegraph", options.flamegraph ? toPath(options.flamegraph) : undefined);
   if (outputPath === undefined) {
-    await $`${typstPath} compile ${opts.join(' ')} ${inputPath}`;
+    await $`${typstPath} compile ${opts} ${inputPath}`;
   } else {
-    await $`${typstPath} compile ${opts.join(' ')} ${inputPath} ${outputPath}`;
+    await $`${typstPath} compile ${opts} ${inputPath} ${outputPath}`;
   }
 }
