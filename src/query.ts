@@ -9,6 +9,7 @@ export interface TypstQueryOptions {
   field?: string;
   one?: boolean;
   format?: 'json' | 'yaml';
+  cert?: PathLike;
 }
 
 export async function query(
@@ -25,5 +26,6 @@ export async function query(
   if (options.field != null) opts.push("--field", options.field);
   if (options.one != null) opts.push("--one");
   if (options.format != null) opts.push("--format", options.format);
+  if (options.cert != null) opts.push("--cert", toPath(options.cert));
   await $`${typstPath} query ${opts} ${inputPath} ${selectorPath}`;
 }
