@@ -45,7 +45,8 @@ console.log(await typst.query("example.typ", "<note>"));
 ![Deno](https://img.shields.io/static/v1?style=for-the-badge&message=Deno&color=000000&logo=Deno&logoColor=FFFFFF&label=)
 ![Bun](https://img.shields.io/static/v1?style=for-the-badge&message=Bun&color=000000&logo=Bun&logoColor=FFFFFF&label=)
 
-You can install Typst using your favorite npm package manager like npm, [Yarn], [pnpm], or [Bun].
+You can install Typst using your favorite npm package manager like npm, [Yarn],
+[pnpm], or [Bun].
 
 ```sh
 npm install typst
@@ -59,7 +60,8 @@ import * as typst from "npm:typst";
 
 🛑 Typst does not yet work in the browser. WASM support is planned.
 
-Supported native platforms: Windows x64, macOS x64, macOS ARM64, Linux x64, Linux ARM64
+Supported native platforms: Windows x64, macOS x64, macOS ARM64, Linux x64,
+Linux ARM64
 
 ## Usage
 
@@ -94,7 +96,8 @@ Options:
   -V, --version       Print version
 ```
 
-<sup>ℹ The `typst update` command will fail. Use `npm install typst@latest` to update it through npm.</sup>
+<sup>ℹ The `typst update` command will fail. Use `npm install typst@latest` to
+update it through npm.</sup>
 
 All of the major Typst CLI commands are also exposed for use in JavaScript:
 
@@ -165,9 +168,13 @@ the `tools/postversion.js` script gets run to realign the `optionalDependencies`
 with the new `version` field. You can do this manually if you prefer. 🤷‍♂️
 
 Then, when you want to create a new release, remember to run `npm run build`
-_after_ the `version` field has been updated (it gets used in the build step). This will generate a bunch of `out/$OS-$ARCH/` folders, each of which is a targeted distribution of a native binary that only works on that platform.
+_after_ the `version` field has been updated (it gets used in the build step).
+This will generate a bunch of `out/$OS-$ARCH/` folders, each of which is a
+targeted distribution of a native binary that only works on that platform.
 
-Then finally when you run `npm publish`, there's a hook to publish all the `out/$OS-$ARCH/` packages (`@typst-community/typst-$OS-$ARCH`) _before_ finally publishing the root `typst` package.
+Then finally when you run `npm publish`, there's a hook to publish all the
+`out/$OS-$ARCH/` packages (`@typst-community/typst-$OS-$ARCH`) _before_ finally
+publishing the root `typst` package.
 
 [typst]: https://typst.app/
 [yarn]: https://yarnpkg.com/
