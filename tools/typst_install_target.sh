@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 case $2 in
     "win32-x64") target="x86_64-pc-windows-msvc";;
