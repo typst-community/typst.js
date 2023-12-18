@@ -3,6 +3,7 @@ import { toPath, typstPath } from "./utils.js";
 import { $ } from "execa";
 
 export interface TypstQueryOptions {
+  signal?: AbortSignal;
   root?: PathLike;
   fontPath?: PathLike;
   diagnosticFormat?: 'human' | 'short' | 'json' | 'yaml';
@@ -27,5 +28,5 @@ export async function query(
   if (options.one != null) opts.push("--one");
   if (options.format != null) opts.push("--format", options.format);
   if (options.cert != null) opts.push("--cert", toPath(options.cert));
-  await $`${typstPath} query ${opts} ${inputPath} ${selectorPath}`;
+  await $({ signal: options.signal })`${typstPath} query ${opts} ${inputPath} ${selectorPath}`;
 }
