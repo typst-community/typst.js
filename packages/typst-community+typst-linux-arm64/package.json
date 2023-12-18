@@ -1,0 +1,16 @@
+{
+  "name": "@typst-community/typst-linux-arm64",
+  "version": "0.10.0-6",
+  "exports": "./.typst/bin/typst",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://typst.app",
+  "files": [
+    ".typst"
+  ]
+}

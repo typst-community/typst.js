@@ -3,7 +3,7 @@ import { $ } from "execa";
 import pathOrFileURLToPath from "./lib/pathOrFileURLToPath.js";
 import getTypstPath from "./lib/getTypstPath.js";
 
-export interface TypstCompileOptions {
+export interface TypstWatchOptions {
   signal?: AbortSignal;
   root?: PathLike;
   fontPath?: PathLike;
@@ -15,10 +15,10 @@ export interface TypstCompileOptions {
   cert?: PathLike;
 }
 
-export default async function compile(
+export default async function watch(
   inputRaw: PathLike,
   outputRaw: PathLike | undefined = undefined,
-  options: TypstCompileOptions = {},
+  options: TypstWatchOptions = {},
 ) {
   const inputPath = pathOrFileURLToPath(inputRaw);
   const outputPath =
@@ -34,19 +34,16 @@ export default async function compile(
   if (options.open != null) opts.push("--open");
   if (options.ppi != null) opts.push("--ppi", options.ppi.toString());
   if (options.flamegraph != null)
-    opts.push(
-      "--flamegraph",
-      options.flamegraph ? pathOrFileURLToPath(options.flamegraph) : undefined,
-    );
+    opts.push("--flamegraph", pathOrFileURLToPath(options.flamegraph));
   if (options.cert != null)
     opts.push("--cert", pathOrFileURLToPath(options.cert));
   if (outputPath === undefined) {
     await $({
       signal: options.signal,
-    })`${getTypstPath()} compile ${opts} ${inputPath}`;
+    })`${getTypstPath()} watch ${opts} ${inputPath}`;
   } else {
     await $({
       signal: options.signal,
-    })`${getTypstPath()} compile ${opts} ${inputPath} ${outputPath}`;
+    })`${getTypstPath()} watch ${opts} ${inputPath} ${outputPath}`;
   }
 }

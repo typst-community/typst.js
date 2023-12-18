@@ -1,0 +1,16 @@
+{
+  "name": "@typst-community/typst-win32-x64",
+  "version": "0.10.0-6",
+  "exports": "./.typst/bin/typst",
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://typst.app",
+  "files": [
+    ".typst"
+  ]
+}
