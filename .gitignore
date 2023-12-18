@@ -1,6 +1,9 @@
 # Ignore Typst PDF outputs
 test/*.pdf
 
+# https://typedoc.org/
+docs
+
 #region https://github.com/github/gitignore/blob/main/Node.gitignore
 # Logs
 logs

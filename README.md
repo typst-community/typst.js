@@ -1,92 +1,110 @@
-<h1 align="center">
-  <img alt="Typst" src="https://user-images.githubusercontent.com/17899797/226108480-722b770e-6313-40d7-84f2-26bebb55a281.png">
-</h1>
+# Typst.js
 
-<p align="center">
-  <a href="https://typst.app/docs/">
-    <img alt="Documentation" src="https://img.shields.io/website?down_message=offline&label=docs&up_color=007aff&up_message=online&url=https%3A%2F%2Ftypst.app%2Fdocs"
-  /></a>
-  <a href="https://typst.app/">
-    <img alt="Typst App" src="https://img.shields.io/website?down_message=offline&label=typst.app&up_color=239dad&up_message=online&url=https%3A%2F%2Ftypst.app"
-  /></a>
-  <a href="https://discord.gg/2uDybryKPe">
-    <img alt="Discord Server" src="https://img.shields.io/discord/1054443721975922748?color=5865F2&label=discord&labelColor=555"
-  /></a>
-  <a href="https://github.com/typst/typst/blob/main/LICENSE">
-    <img alt="Apache-2 License" src="https://img.shields.io/badge/license-Apache%202-brightgreen"
-  /></a>
-  <a href="https://typst.app/jobs/">
-    <img alt="Jobs at Typst" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Ftypst.app%2Fassets%2Fdata%2Fshields.json&query=%24.jobs.text&label=jobs&color=%23A561FF&cacheSeconds=1800"
-  /></a>
+📦 Typst for JavaScript
+
+<table align=center><td>
+
+```sh
+# ✨ Use Typst right away through the power of npx! 🚀
+npx typst --help
+npx typst compile example.typ example.pdf
+npx typst query example.typ "<note>"
+#=> [ { "func": "metadata", "value": "This is a note" } ]
+```
+
+<tr><td>
+
+```js
+// 👨‍💻 Or use the JavaScript API (with types!)
+import * as typst from "typst";
+await typst.compile("example.typ", "example.pdf");
+console.log(await typst.query("example.typ", "<note>"));
+//=> [ { func: 'metadata', value: 'This is a note' } ]
+```
+
+</table>
+
+<p align=center>
+  <a href="https://typst.community/typst.js/">Docs</a>
+  | <a href="https://github.com/typst-community/typst.js">GitHub</a>
+  | <a href="https://typst.app/">Typst</a>
 </p>
 
-Typst is a new markup-based typesetting system that is designed to be as powerful
-as LaTeX while being much easier to learn and use. Typst has:
+👨‍💻 Includes the Typst CLI so you can `npx typst` \
+💻 Provides a typed JavaScript API so you can `typst.compile()` \
+📑 Install it locally with `npm install --save` as a project-level dependency \
+🌎 Or install it globally with `npm install --global`
 
-- Built-in markup for the most common formatting tasks
-- Flexible functions for everything else
-- A tightly integrated scripting system
-- Math typesetting, bibliography management, and more
-- Fast compile times thanks to incremental compilation
-- Friendly error messages in case something goes wrong
+[**📑 Make sure you check out the official Typst website!**](https://typst.app/)
 
-This repository contains the Typst compiler and its CLI, which is everything you
-need to compile Typst documents locally. For the best writing experience,
-consider signing up to our [collaborative online editor][app] for free. It is
-currently in public beta.
+## Installation
 
-## Example
+```sh
+npm install typst
+```
 
-A [gentle introduction][tutorial] to Typst is available in our documentation.
-However, if you want to see the power of Typst encapsulated in one image, here
-it is:
+```js
+import * as typst from "npm:typst";
+```
 
-<p align="center">
- <img alt="Example" width="900" src="https://user-images.githubusercontent.com/17899797/228031796-ced0e452-fcee-4ae9-92da-b9287764ff25.png"/>
-</p>
+🛑 Typst does not yet work in the browser. WASM support is planned.
 
-Let's dissect what's going on:
+## Usage
 
-- We use _set rules_ to configure element properties like the size of pages or
-  the numbering of headings. By setting the page height to `auto`, it scales to
-  fit the content. Set rules accommodate the most common configurations. If you
-  need full control, you can also use [show rules][show] to completely redefine
-  the appearance of an element.
+This package provides both the Typst CLI as well as a JavaScript API. To use the
+CLI, just run `npx typst --help`.
 
-- We insert a heading with the `= Heading` syntax. One equals sign creates a top
-  level heading, two create a subheading and so on. Typst has more lightweight
-  markup like this, see the [syntax] reference for a full list.
+```
+The Typst compiler
 
-- [Mathematical equations][math] are enclosed in dollar signs. By adding extra
-  spaces around the contents of a equation, we can put it into a separate block.
-  Multi-letter identifiers are interpreted as Typst definitions and functions
-  unless put into quotes. This way, we don't need backslashes for things like
-  `floor` and `sqrt`. And `phi.alt` applies the `alt` modifier to the `phi` to
-  select a particular symbol variant.
+Usage: typst [OPTIONS] <COMMAND>
 
-- Now, we get to some [scripting]. To input code into a Typst document, we can
-  write a hash followed by an expression. We define two variables and a
-  recursive function to compute the n-th fibonacci number. Then, we display the
-  results in a center-aligned table. The table function takes its cells
-  row-by-row. Therefore, we first pass the formulas `$F_1$` to `$F_8$` and then
-  the computed fibonacci numbers. We apply the spreading operator (`..`) to both
-  because they are arrays and we want to pass the arrays' items as individual
-  arguments.
+Commands:
+  compile  Compiles an input file into a supported output format [aliases: c]
+  watch    Watches an input file and recompiles on changes [aliases: w]
+  query    Processes an input file to extract provided metadata
+  fonts    Lists all discovered fonts in system and custom font paths
+  update   Self update the Typst CLI
+  help     Print this message or the help of the given subcommand(s)
 
-<details>
-  <summary>Text version of the code example.</summary>
+Options:
+  -v, --verbosity...  Sets the level of logging verbosity: -v = warning & error, -vv = info, -vvv = debug, -vvvv = trace
+      --cert <CERT>   Path to a custom CA certificate to use when making network requests [env: TYPST_CERT=]
+  -h, --help          Print help
+  -V, --version       Print version
+```
+
+<sup>ℹ The `typst update` command will fail. Use `npm install typst@latest` to update it through npm.</sup>
+
+All of the major Typst CLI commands are also exposed for use in JavaScript:
+
+```js
+import * as typst from "typst";
+await typst.query("example.typ", "<note>"); //=> object[]
+await typst.compile("example.typ", "example.pdf");
+await typst.watch("example.typ", "example.pdf");
+await typst.fonts(); //=> string[]
+await typst.help(); //=> string
+await typst.version(); //=> string
+```
+
+[📚 Check out the Typst.js documentation website for more details!](https://typst.community/typst.js/)
+
+### Example
+
+<img align=right src="https://i.imgur.com/24wiUGN.png">
 
 ```typst
 #set page(width: 10cm, height: auto)
 #set heading(numbering: "1.")
 
 = Fibonacci sequence
-The Fibonacci sequence is defined through the
-recurrence relation $F_n = F_(n-1) + F_(n-2)$.
+The Fibonacci sequence is defined through
+the recurrence relation $F_n = F_(n-1) + F_(n-2)$.
 It can also be expressed in _closed form:_
 
 $ F_n = round(1 / sqrt(5) phi.alt^n), quad
-  phi.alt = (1 + sqrt(5)) / 2 $
+  phi.alt = (l + sqrt(5)) / 2 $
 
 #let count = 8
 #let nums = range(1, count + 1)
@@ -104,165 +122,26 @@ The first #count numbers of the sequence are:
 ))
 ```
 
-</details>
-
-## Installation
-
-Typst's CLI is available from different sources:
-
-- You can get sources and pre-built binaries for the latest release of Typst
-  from the [releases page][releases]. Download the archive for your platform and
-  place it in a directory that is in your `PATH`. To stay up to date with future
-  releases, you can simply run `typst update`.
-
-- You can install Typst through different package managers. Note that the
-  versions in the package managers might lag behind the latest release.
-
-  - Linux: View [Typst on Repology][repology]
-  - macOS: `brew install typst`
-  - Windows: `winget install --id Typst.Typst`
-
-- If you have a [Rust][rust] toolchain installed, you can also install the
-  latest development version with
-  `cargo install --git https://github.com/typst/typst typst-cli`. Note that this
-  will be a "nightly" version that may be broken or not yet properly documented.
-
-- Nix users can use the `typst` package with `nix-shell -p typst` or build and
-  run the bleeding edge version with `nix run github:typst/typst -- --version`.
-
-- Docker users can run a prebuilt image with
-  `docker run -it ghcr.io/typst/typst:latest`.
-
-## Usage
-
-Once you have installed Typst, you can use it like this:
-
 ```sh
-# Creates `file.pdf` in working directory.
-typst compile file.typ
-
-# Creates PDF file at the desired path.
-typst compile path/to/source.typ path/to/output.pdf
+typst compile example.typ
+$BROWSER example.pdf
 ```
 
-You can also watch source files and automatically recompile on changes. This is
-faster than compiling from scratch each time because Typst has incremental
-compilation.
+## Development
 
-```sh
-# Watches source files and recompiles on changes.
-typst watch file.typ
-```
+This package contains two primary parts: a binary redistribution setup using a
+bunch of `optionalDependencies` and a bunch of pretty `typst ...` CLI wrapper
+functions.
 
-Typst further allows you to add custom font paths for your project and list all
-of the fonts it discovered:
+When you clone this repository and run `npm install`, it auto runs the
+`tools/generate-dist-package` script with your current `$OS-$ARCH` tuple and
+uses `npm link` to link that to the current workspace. This is for debugging.
 
-```sh
-# Adds additional directories to search for fonts.
-typst compile --font-path path/to/fonts file.typ
+To bump the version, use `npm version --no-git-tag-version $NEW_VERSION` so that
+the `tools/postversion.js` script gets run to realign the `optionalDependencies`
+with the new `version` field. You can do this manually if you prefer. 🤷‍♂️
 
-# Lists all of the discovered fonts in the system and the given directory.
-typst fonts --font-path path/to/fonts
+Then, when you want to create a new release, remember to run `npm run build`
+_after_ the `version` field has been updated (it gets used in the build step). This will generate a bunch of `out/$OS-$ARCH/` folders, each of which is a targeted distribution of a native binary that only works on that platform.
 
-# Or via environment variable (Linux syntax).
-TYPST_FONT_PATHS=path/to/fonts typst fonts
-```
-
-For other CLI subcommands and options, see below:
-
-```sh
-# Prints available subcommands and options.
-typst help
-
-# Prints detailed usage of a subcommand.
-typst help watch
-```
-
-If you prefer an integrated IDE-like experience with autocompletion and instant
-preview, you can also check out the [Typst web app][app], which is currently in
-public beta.
-
-## Community
-
-The main place where the community gathers is our [Discord server][discord].
-Feel free to join there to ask questions, help out others, share cool things
-you created with Typst, or just to chat.
-
-Aside from that there are a few places where you can find things built by
-the community:
-
-- The official [package list](https://typst.app/docs/packages)
-- The [Awesome Typst](https://github.com/qjcg/awesome-typst) repository
-
-If you had a bad experience in our community, please [reach out to us][contact].
-
-## Contributing
-
-We would love to see contributions from the community. If you experience bugs,
-feel free to open an issue. If you would like to implement a new feature or bug
-fix, please follow the steps outlined in the [contribution guide][contributing].
-
-To build Typst yourself, first ensure that you have the
-[latest stable Rust][rust] installed. Then, clone this repository and build the
-CLI with the following commands:
-
-```sh
-git clone https://github.com/typst/typst
-cd typst
-cargo build --release
-```
-
-The optimized binary will be stored in `target/release/`.
-
-Another good way to contribute is by [sharing packages][packages] with the
-community.
-
-## Pronunciation and Spelling
-
-IPA: /taɪpst/. "Ty" like in **Ty**pesetting and "pst" like in Hi**pst**er. When
-writing about Typst, capitalize its name as a proper noun, with a capital "T".
-
-## Design Principles
-
-All of Typst has been designed with three key goals in mind: Power,
-simplicity, and performance. We think it's time for a system that matches the
-power of LaTeX, is easy to learn and use, all while being fast enough to realize
-instant preview. To achieve these goals, we follow three core design principles:
-
-- **Simplicity through Consistency:**
-  If you know how to do one thing in Typst, you should be able to transfer that
-  knowledge to other things. If there are multiple ways to do the same thing,
-  one of them should be at a different level of abstraction than the other. E.g.
-  it's okay that `= Introduction` and `#heading[Introduction]` do the same thing
-  because the former is just syntax sugar for the latter.
-
-- **Power through Composability:**
-  There are two ways to make something flexible: Have a knob for everything or
-  have a few knobs that you can combine in many ways. Typst is designed with the
-  second way in mind. We provide systems that you can compose in ways we've
-  never even thought of. TeX is also in the second category, but it's a bit
-  low-level and therefore people use LaTeX instead. But there, we don't really
-  have that much composability. Instead, there's a package for everything
-  (`\usepackage{knob}`).
-
-- **Performance through Incrementality:**
-  All Typst language features must accommodate for incremental compilation.
-  Luckily we have [`comemo`], a system for incremental compilation which does
-  most of the hard work in the background.
-
-[docs]: https://typst.app/docs/
-[app]: https://typst.app/
-[discord]: https://discord.gg/2uDybryKPe
-[tutorial]: https://typst.app/docs/tutorial/
-[show]: https://typst.app/docs/reference/styling/#show-rules
-[math]: https://typst.app/docs/reference/math/
-[syntax]: https://typst.app/docs/reference/syntax/
-[scripting]: https://typst.app/docs/reference/scripting/
-[rust]: https://rustup.rs/
-[releases]: https://github.com/typst/typst/releases/
-[repology]: https://repology.org/project/typst/versions
-[contact]: https://typst.app/contact
-[architecture]: https://github.com/typst/typst/blob/main/docs/dev/architecture.md
-[contributing]: https://github.com/typst/typst/blob/main/CONTRIBUTING.md
-[packages]: https://github.com/typst/packages/
-[`comemo`]: https://github.com/typst/comemo/
+Then finally when you run `npm publish`, there's a hook to publish all the `out/$OS-$ARCH/` packages (`@typst-community/typst-$OS-$ARCH`) _before_ finally publishing the root `typst` package.
