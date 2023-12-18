@@ -32,8 +32,7 @@
     "format": "prettier -w .",
     "lint": "tsc --noEmit",
     "postversion": "node tools/postversion.js",
-    "generate-dist-packages": "node tools/generate-dist-packages.js",
-    "prepublishOnly": "npm publish -w @typst-community/typst-win32-x64 -w @typst-community/typst-darwin-x64 -w @typst-community/typst-darwin-arm64 -w @typst-community/typst-linux-arm64 -w @typst-community/typst-linux-x64"
+    "generate-dist-packages": "node tools/generate-dist-packages.js"
   },
   "dependencies": {
     "execa": "^8.0.1"
@@ -50,8 +49,5 @@
     "@typst-community/typst-darwin-arm64": "0.10.0-5",
     "@typst-community/typst-linux-arm64": "0.10.0-5",
     "@typst-community/typst-linux-x64": "0.10.0-5"
-  },
-  "workspaces": [
-    "./packages/*"
-  ]
+  }
 }

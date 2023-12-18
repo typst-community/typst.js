@@ -1,0 +1,16 @@
+{
+  "name": "@typst-community/typst-darwin-x64",
+  "version": "0.10.0-5",
+  "exports": "./.typst/bin/typst",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://typst.app",
+  "files": [
+    ".typst"
+  ]
+}

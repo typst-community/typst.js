@@ -6,11 +6,11 @@ import { spawnSync } from "node:child_process";
  * triggers `process.exit()`.
  */
 export default function abexec(argv0: string, argv: string[]) {
-    const r = spawnSync(argv0, argv, { stdio: 'inherit' });
-    if (r.error) {
-        console.error(r.error)
-        process.exit(100)
-    } else {
-        process.exit(r.status ?? 100)
-    }
+  const r = spawnSync(argv0, argv, { stdio: "inherit" });
+  if (r.error) {
+    console.error(r.error);
+    process.exit(100);
+  } else {
+    process.exit(r.status ?? 100);
   }
+}

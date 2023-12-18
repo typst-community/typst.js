@@ -14,6 +14,11 @@ case $2 in
     *) archive_ext=".tar.xz";;
 esac
 
+case $2 in
+    "win32-x64") exe_ext=".exe";;
+    *) exe_ext="";;
+esac
+
 folder="typst-$target"
 file="$folder$archive_ext"
 
@@ -36,8 +41,8 @@ fi
 rm -f "$typst_install/$file"
 
 mkdir -p "$typst_install/bin"
-mv -f "$typst_install/$folder/typst" "$typst_install/bin/typst"
-chmod +x "$typst_install/bin/typst"
+mv -f "$typst_install/$folder/typst$exe_ext" "$typst_install/bin/typst$exe_ext"
+chmod +x "$typst_install/bin/typst$exe_ext"
 
 mv -f "$typst_install/$folder"/* "$typst_install"
 rm -rf "${typst_install:?}/$folder"
