@@ -12,7 +12,7 @@
     "markdown",
     "pdf"
   ],
-  "homepage": "https://typst.app",
+  "homepage": "https://typst.community/typst.js/",
   "bugs": "https://github.com/typst-community/typst.js/issues",
   "repository": "github:typst-community/typst.js",
   "license": "Apache-2.0",
