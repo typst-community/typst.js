@@ -12,5 +12,8 @@
   "homepage": "https://typst.app",
   "files": [
     ".typst"
-  ]
+  ],
+  "scripts": {
+    "build": "bash -c \"export TYPST_INSTALL=.typst; bash ../../tools/typst_install_target.sh 0.10.0 win32-x64\""
+  }
 }

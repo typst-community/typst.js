@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 import { readFile, writeFile, mkdir, copyFile } from "node:fs/promises";
-import { basename, join, resolve } from "node:path";
-import { existsSync } from "node:fs";
-import { $ } from "execa";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const processCWDFileURL = pathToFileURL(process.cwd());
@@ -27,6 +24,8 @@ for (const tuple of tuples) {
   );
   await mkdir(rootDir, { recursive: true });
 
+  const version = package_.version.match(/^\d+\.\d+\.\d+/)[0];
+
   const [os, arch] = tuple.split("-");
   const distPackage = {
     name: `@typst-community/typst-${tuple}`,
@@ -39,6 +38,9 @@ for (const tuple of tuples) {
     license: package_.license,
     homepage: package_.homepage,
     files: [".typst"],
+    scripts: {
+      build: `bash -c "export TYPST_INSTALL=.typst; bash ../../tools/typst_install_target.sh ${version} ${tuple}"`,
+    },
   };
   const distText = JSON.stringify(distPackage, null, 2);
   await writeFile(new URL("./package.json", rootDir), distText);
@@ -53,20 +55,4 @@ for (const tuple of tuples) {
 
   const readme = package_.homepage;
   await writeFile(new URL("./README.md", rootDir), readme);
-
-  const typstInstallTargetPath = fileURLToPath(
-    new URL("./typst_install_target.sh", import.meta.url),
-  );
-  const version = package_.version.match(/^\d+\.\d+\.\d+/)[0];
-  const env = {
-    ...process.env,
-    TYPST_INSTALL: fileURLToPath(new URL("./.typst/", rootDir)).replace(
-      /[/\\]$/,
-      "",
-    ),
-  };
-  await $({
-    stdio: "inherit",
-    env,
-  })`bash ${typstInstallTargetPath} ${version} ${tuple}`;
 }

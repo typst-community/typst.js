@@ -30,10 +30,11 @@
     "test": "node --test",
     "prepare": "bash tools/prepare.sh",
     "build": "tsc",
+    "generate-dist-packages": "node tools/generate-dist-packages.js",
+    "build-dist-packages": "bash tools/build-dist-packages.sh",
     "format": "prettier -w .",
     "lint": "tsc --noEmit",
     "postversion": "node tools/postversion.js",
-    "generate-dist-packages": "node tools/generate-dist-packages.js",
     "prepublishOnly": "bash tools/prepublishOnly.sh"
   },
   "dependencies": {
