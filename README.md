@@ -1,6 +1,6 @@
 # Typst
 
-📦 Typst for JavaScript
+📦 [Typst] for JavaScript
 
 <table align=center><td>
 
@@ -51,7 +51,7 @@ You can install Typst using your favorite npm package manager like npm, [Yarn], 
 npm install typst
 ```
 
-If you're using Deno you can import Typst straight from `npm:typst`.
+If you're using [Deno] you can import Typst straight from `npm:typst`.
 
 ```js
 import * as typst from "npm:typst";
@@ -168,3 +168,9 @@ Then, when you want to create a new release, remember to run `npm run build`
 _after_ the `version` field has been updated (it gets used in the build step). This will generate a bunch of `out/$OS-$ARCH/` folders, each of which is a targeted distribution of a native binary that only works on that platform.
 
 Then finally when you run `npm publish`, there's a hook to publish all the `out/$OS-$ARCH/` packages (`@typst-community/typst-$OS-$ARCH`) _before_ finally publishing the root `typst` package.
+
+[typst]: https://typst.app/
+[yarn]: https://yarnpkg.com/
+[pnpm]: https://pnpm.io/
+[deno]: https://deno.com/
+[bun]: https://bun.sh/
