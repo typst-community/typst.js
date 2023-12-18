@@ -3,6 +3,7 @@ import { toPath, typstPath } from "./utils.js";
 import { $ } from "execa";
 
 export interface TypstCompileOptions {
+  signal?: AbortSignal;
   root?: PathLike;
   fontPath?: PathLike;
   diagnosticFormat?: 'human' | 'short';
@@ -30,8 +31,8 @@ export default async function compile(
   if (options.flamegraph != null) opts.push("--flamegraph", options.flamegraph ? toPath(options.flamegraph) : undefined);
   if (options.cert != null) opts.push("--cert", toPath(options.cert));
   if (outputPath === undefined) {
-    await $`${typstPath} compile ${opts} ${inputPath}`;
+    await $({ signal: options.signal })`${typstPath} compile ${opts} ${inputPath}`;
   } else {
-    await $`${typstPath} compile ${opts} ${inputPath} ${outputPath}`;
+    await $({ signal: options.signal })`${typstPath} compile ${opts} ${inputPath} ${outputPath}`;
   }
 }
