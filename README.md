@@ -1,4 +1,4 @@
-# Typst.js
+# Typst
 
 📦 Typst for JavaScript
 
@@ -39,9 +39,19 @@ console.log(await typst.query("example.typ", "<note>"));
 
 ## Installation
 
+![npm](https://img.shields.io/static/v1?style=for-the-badge&message=npm&color=CB3837&logo=npm&logoColor=FFFFFF&label=)
+![Yarn](https://img.shields.io/static/v1?style=for-the-badge&message=Yarn&color=2C8EBB&logo=Yarn&logoColor=FFFFFF&label=)
+![pnpm](https://img.shields.io/static/v1?style=for-the-badge&message=pnpm&color=222222&logo=pnpm&logoColor=F69220&label=)
+![Deno](https://img.shields.io/static/v1?style=for-the-badge&message=Deno&color=000000&logo=Deno&logoColor=FFFFFF&label=)
+![Bun](https://img.shields.io/static/v1?style=for-the-badge&message=Bun&color=000000&logo=Bun&logoColor=FFFFFF&label=)
+
+You can install Typst using your favorite npm package manager like npm, [Yarn], [pnpm], or [Bun].
+
 ```sh
 npm install typst
 ```
+
+If you're using Deno you can import Typst straight from `npm:typst`.
 
 ```js
 import * as typst from "npm:typst";
@@ -49,7 +59,17 @@ import * as typst from "npm:typst";
 
 🛑 Typst does not yet work in the browser. WASM support is planned.
 
+Supported native platforms: Windows x64, macOS x64, macOS ARM64, Linux x64, Linux ARM64
+
 ## Usage
+
+![Windows](https://img.shields.io/static/v1?style=for-the-badge&message=Windows&color=0078D4&logo=Windows&logoColor=FFFFFF&label=)
+![macOS](https://img.shields.io/static/v1?style=for-the-badge&message=macOS&color=000000&logo=macOS&logoColor=FFFFFF&label=)
+![Linux](https://img.shields.io/static/v1?style=for-the-badge&message=Linux&color=222222&logo=Linux&logoColor=FCC624&label=)
+![Terminal](https://img.shields.io/static/v1?style=for-the-badge&message=Terminal&color=4D4D4D&logo=Windows+Terminal&logoColor=FFFFFF&label=)
+![Node.js](https://img.shields.io/static/v1?style=for-the-badge&message=Node.js&color=339933&logo=Node.js&logoColor=FFFFFF&label=)
+![Deno](https://img.shields.io/static/v1?style=for-the-badge&message=Deno&color=000000&logo=Deno&logoColor=FFFFFF&label=)
+![Bun](https://img.shields.io/static/v1?style=for-the-badge&message=Bun&color=000000&logo=Bun&logoColor=FFFFFF&label=)
 
 This package provides both the Typst CLI as well as a JavaScript API. To use the
 CLI, just run `npx typst --help`.
@@ -88,7 +108,7 @@ await typst.help(); //=> string
 await typst.version(); //=> string
 ```
 
-[📚 Check out the Typst.js documentation website for more details!](https://typst.community/typst.js/)
+[📚 Check out the Typst JavaScript API documentation for more details!](https://typst.community/typst.js/)
 
 ### Example
 
@@ -128,6 +148,9 @@ $BROWSER example.pdf
 ```
 
 ## Development
+
+![Node.js](https://img.shields.io/static/v1?style=for-the-badge&message=Node.js&color=339933&logo=Node.js&logoColor=FFFFFF&label=)
+![TypeScript](https://img.shields.io/static/v1?style=for-the-badge&message=TypeScript&color=3178C6&logo=TypeScript&logoColor=FFFFFF&label=)
 
 This package contains two primary parts: a binary redistribution setup using a
 bunch of `optionalDependencies` and a bunch of pretty `typst ...` CLI wrapper
