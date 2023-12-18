@@ -16,9 +16,9 @@ npx typst query example.typ "<note>"
 
 ```js
 // 👨‍💻 Or use the JavaScript API (with types!)
-import * as typst from "typst"
-await typst.compile("example.typ", "example.pdf")
-console.log(await typst.query("example.typ", "<note>"))
+import * as typst from "typst";
+await typst.compile("example.typ", "example.pdf");
+console.log(await typst.query("example.typ", "<note>"));
 //=> [ { func: 'metadata', value: 'This is a note' } ]
 ```
 
@@ -44,7 +44,7 @@ npm install typst
 ```
 
 ```js
-import * as typst from "npm:typst"
+import * as typst from "npm:typst";
 ```
 
 🛑 Typst does not yet work in the browser. WASM support is planned.
@@ -79,13 +79,13 @@ Options:
 All of the major Typst CLI commands are also exposed for use in JavaScript:
 
 ```js
-import * as typst from "typst"
-await typst.query("example.typ", "<note>") //=> object[]
-await typst.compile("example.typ", "example.pdf")
-await typst.watch("example.typ", "example.pdf")
-await typst.fonts() //=> string[]
-await typst.help() //=> string
-await typst.version() //=> string
+import * as typst from "typst";
+await typst.query("example.typ", "<note>"); //=> object[]
+await typst.compile("example.typ", "example.pdf");
+await typst.watch("example.typ", "example.pdf");
+await typst.fonts(); //=> string[]
+await typst.help(); //=> string
+await typst.version(); //=> string
 ```
 
 [📚 Check out the Typst.js documentation website for more details!](https://typst.community/typst.js/)
@@ -136,6 +136,10 @@ functions.
 When you clone this repository and run `npm install`, it auto runs the
 `tools/generate-dist-package` script with your current `$OS-$ARCH` tuple and
 uses `npm link` to link that to the current workspace. This is for debugging.
+
+To bump the version, use `npm version --no-git-tag-version $NEW_VERSION` so that
+the `tools/postversion.js` script gets run to realign the `optionalDependencies`
+with the new `version` field. You can do this manually if you prefer. 🤷‍♂️
 
 Then, when you want to create a new release, remember to run `npm run build`
 _after_ the `version` field has been updated (it gets used in the build step). This will generate a bunch of `out/$OS-$ARCH/` folders, each of which is a targeted distribution of a native binary that only works on that platform.

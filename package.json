@@ -1,6 +1,6 @@
 {
   "name": "typst",
-  "version": "0.10.0-7",
+  "version": "0.10.0-8",
   "description": "A new markup-based typesetting system that is powerful and easy to learn.",
   "keywords": [
     "typesetting",
@@ -34,7 +34,8 @@
     "format": "prettier -w .",
     "lint": "tsc --noEmit",
     "prepublishOnly": "bash tools/prepublishOnly.sh",
-    "build:docs": "typedoc"
+    "build:docs": "typedoc",
+    "postversion": "node tools/postversion.js"
   },
   "dependencies": {
     "execa": "^8.0.1"
@@ -47,10 +48,10 @@
     "vitest": "^1.0.4"
   },
   "optionalDependencies": {
-    "@typst-community/typst-darwin-arm64": "0.10.0-6",
-    "@typst-community/typst-darwin-x64": "0.10.0-6",
-    "@typst-community/typst-linux-arm64": "0.10.0-6",
-    "@typst-community/typst-linux-x64": "0.10.0-6",
-    "@typst-community/typst-win32-x64": "0.10.0-6"
+    "@typst-community/typst-darwin-arm64": "0.10.0-8",
+    "@typst-community/typst-darwin-x64": "0.10.0-8",
+    "@typst-community/typst-linux-arm64": "0.10.0-8",
+    "@typst-community/typst-linux-x64": "0.10.0-8",
+    "@typst-community/typst-win32-x64": "0.10.0-8"
   }
 }
