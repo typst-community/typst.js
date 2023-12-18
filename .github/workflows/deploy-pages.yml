@@ -31,7 +31,7 @@ jobs:
       - run: npm ci
       - id: configure-pages
         uses: actions/configure-pages@v4
-      - run: npm run build
+      - run: npm run build:docs
         env:
           BASE_URL: ${{ steps.configure-pages.outputs.base_url }}/
       - uses: actions/upload-pages-artifact@v2
