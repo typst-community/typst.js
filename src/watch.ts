@@ -3,6 +3,7 @@ import { toPath, typstPath } from "./utils.js";
 import { $ } from "execa";
 
 export interface TypstWatchOptions {
+  signal?: AbortSignal;
   root?: PathLike;
   fontPath?: PathLike;
   diagnosticFormat?: 'human' | 'short';
@@ -10,6 +11,7 @@ export interface TypstWatchOptions {
   open?: boolean;
   ppi?: number;
   flamegraph?: PathLike;
+  cert?: PathLike;
 }
 
 export default async function watch(
@@ -27,9 +29,10 @@ export default async function watch(
   if (options.open != null) opts.push("--open");
   if (options.ppi != null) opts.push("--ppi", options.ppi.toString());
   if (options.flamegraph != null) opts.push("--flamegraph", toPath(options.flamegraph));
+  if (options.cert != null) opts.push("--cert", toPath(options.cert));
   if (outputPath === undefined) {
-    await $({ signal: options.signal })`${typstPath} watch ${opts.join(' ')} ${inputPath}`;
+    await $({ signal: options.signal })`${typstPath} watch ${opts} ${inputPath}`;
   } else {
-    await $({ signal: options.signal })`${typstPath} watch ${opts.join(' ')} ${inputPath} ${outputPath}`;
+    await $({ signal: options.signal })`${typstPath} watch ${opts} ${inputPath} ${outputPath}`;
   }
 }
