@@ -10,11 +10,11 @@ let text = await readFile(packageFile, "utf8");
 let package_ = JSON.parse(text);
 
 const tuples = [
-  "@typst-community/typst-win32-x64",
-  "@typst-community/typst-darwin-x64",
-  "@typst-community/typst-darwin-arm64",
-  "@typst-community/typst-linux-arm64",
-  "@typst-community/typst-linux-x64",
+  "win32-x64",
+  "darwin-x64",
+  "darwin-arm64",
+  "linux-arm64",
+  "linux-x64",
 ];
 
 for (const tuple of tuples) {

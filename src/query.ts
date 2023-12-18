@@ -16,11 +16,10 @@ export interface TypstQueryOptions {
 
 export default async function query(
   inputRaw: PathLike,
-  selectorRaw: PathLike,
+  selector: string,
   options: TypstQueryOptions = {},
 ) {
   const inputPath = pathOrFileURLToPath(inputRaw);
-  const selectorPath = pathOrFileURLToPath(selectorRaw);
   const opts = [];
   if (options.root != null)
     opts.push("--root", pathOrFileURLToPath(options.root));
@@ -35,7 +34,7 @@ export default async function query(
     opts.push("--cert", pathOrFileURLToPath(options.cert));
   const { stdout } = await $({
     signal: options.signal,
-  })`${getTypstPath()} query ${opts} ${inputPath} ${selectorPath}`;
+  })`${getTypstPath()} query ${opts} ${inputPath} ${selector}`;
   const json = JSON.parse(stdout);
   return json;
 }
