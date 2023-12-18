@@ -92,7 +92,7 @@ await typst.version(); //=> string
 
 ### Example
 
-<img align=right src="https://i.imgur.com/24wiUGN.png">
+<img align=right width=400 src="https://i.imgur.com/24wiUGN.png">
 
 ```typst
 #set page(width: 10cm, height: auto)
