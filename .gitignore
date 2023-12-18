@@ -1,8 +1,3 @@
-# Ignore Typst downloads when in dev
-typst-*.tar.xz
-typst-*.zip
-bin/typst
-
 # Ignore Typst PDF outputs
 test/*.pdf
 

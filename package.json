@@ -26,11 +26,14 @@
     "dist"
   ],
   "scripts": {
-    "postinstall": "node dist/postinstall.js || true",
-    "test": "tsc && node --test",
+    "pretest": "tsc",
+    "test": "node --test",
     "build": "tsc",
     "format": "prettier -w .",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "postversion": "node tools/postversion.js",
+    "generate-dist-packages": "node tools/generate-dist-packages.js",
+    "prepublishOnly": "npm publish -w @typst-community/typst-win32-x64 -w @typst-community/typst-darwin-x64 -w @typst-community/typst-darwin-arm64 -w @typst-community/typst-linux-arm64 -w @typst-community/typst-linux-x64"
   },
   "dependencies": {
     "execa": "^8.0.1"
@@ -40,5 +43,15 @@
     "prettier": "^3.1.1",
     "typescript": "^5.3.3",
     "vitest": "^1.0.4"
-  }
+  },
+  "optionalDependencies": {
+    "@typst-community/typst-win32-x64": "0.10.0-5",
+    "@typst-community/typst-darwin-x64": "0.10.0-5",
+    "@typst-community/typst-darwin-arm64": "0.10.0-5",
+    "@typst-community/typst-linux-arm64": "0.10.0-5",
+    "@typst-community/typst-linux-x64": "0.10.0-5"
+  },
+  "workspaces": [
+    "./packages/*"
+  ]
 }

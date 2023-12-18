@@ -4,3 +4,5 @@ various factors that influence _fluid
 dynamics_ in glaciers and how they
 contribute to the formation and
 behavior of these natural structures.
+
+#metadata("This is a note") <note>

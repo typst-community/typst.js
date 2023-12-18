@@ -1,20 +1,9 @@
 #!/usr/bin/env node
-import { $ } from "execa";
-import { ensureInstalled, package_, typstPath } from "./utils.js";
-
-await ensureInstalled();
+import abexec from "./lib/abexec.js";
+import getTypstPath from "./lib/getTypstPath.js";
 
 if (process.argv[2] === "upgrade") {
-  console.error(
-    `This installation of Typst is controlled by npm:typst@${package_.version}.\n` +
-      `It's recommended to use 'npm install typst@latest' instead of the builtin\n` +
-      `'typst upgrade' command.`,
-  );
+  console.error(`This 'typst' is controlled by npm. Use npm to upgrade.`);
+  process.exit(1)
 }
-
-const { exitCode, signal } = await $({
-  stdio: "inherit",
-  reject: false,
-})`${typstPath} ${process.argv.slice(2)}`;
-if (signal) process.kill(process.pid, signal);
-process.exit(exitCode ?? 100);
+abexec(getTypstPath(), process.argv.slice(2))
